@@ -1,9 +1,5 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
-
 import AsciiReveal from "./utils/flower.jsx";
+import hyperImage from "./assets/hyper-image.jpg";
 import "./App.css";
 
 function PageHeader() {
@@ -19,7 +15,7 @@ function PageHeader() {
             <a href="#project-section">Projects</a>
           </li>
           <li>
-            <a>About Me</a>
+            <a href="#about-section">About Me</a>
           </li>
           <li>
             <a>Contact</a>
@@ -53,8 +49,68 @@ function ProjectSection() {
     <section className="project-section" id="project-section">
       <div className="project-header">
         <h2>My Projects</h2>
+        <div className="projects-tabs-container">
+          <button className="project-tab">
+            <span className="arrow">↪</span> Mood Reflection Application
+          </button>
+          <button className="project-tab">
+            <span className="arrow">↪</span> Cafe Ordering Application
+          </button>
+          <button className="project-tab">
+            <span className="arrow">↪</span> Architecture Portfolio Website
+          </button>
+        </div>
       </div>
       <div className="project-panel"></div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section className="about-section" id="about-section">
+      <div className="about-section-header">
+        <h2>About Me</h2>
+      </div>
+      <div className="about-section-cards-container">
+        <div className="about-card">
+          <div className="about-card-text">
+            <h3>Education.</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <img src={hyperImage} />
+        </div>
+        <div className="about-card">
+          <div className="about-card-text">
+            <h3>Work Experience.</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <img src={hyperImage} />
+        </div>
+        <div className="about-card">
+          <div className="about-card-text">
+            <h3>Interest.</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <img src={hyperImage} />
+        </div>
+      </div>
+      <div className="about-section-header"></div>
     </section>
   );
 }
@@ -64,6 +120,7 @@ function App() {
       <PageHeader />
       <HeroSection />
       <ProjectSection />
+      <AboutSection />
     </>
   );
 }

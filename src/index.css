@@ -47,6 +47,17 @@ ul li {
 ul li:hover {
   color: var(--accent-color);
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease all;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
 .btn-primary {
   background-color: var(--accent-color);
   border: none;
@@ -92,6 +103,7 @@ ul li:hover {
 
 .hero-text h1 {
   font-weight: 400;
+  font-size: 2rem;
 }
 
 /*Projects Section*/
@@ -104,4 +116,80 @@ ul li:hover {
 
 .project-panel {
   background-color: var(--accent-color);
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 2rem;
+}
+.project-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+}
+
+.projects-tabs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.project-tab {
+  background: none;
+  color: grey;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.project-tab:hover {
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+/*About Me Section*/
+
+.about-section-header {
+  height: 25vh;
+  background-image: url("./assets/rock-texture.jpg");
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+.about-section-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.about-section-header h2 {
+  position: relative;
+  z-index: 1;
+}
+
+.about-card {
+  display: flex;
+}
+
+.about-card-text h3 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.about-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5rem;
+}
+
+.about-card-text p {
+  text-align: justify;
 }
