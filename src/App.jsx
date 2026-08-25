@@ -51,6 +51,31 @@ const projects = [
     stack: reactFlaskLogo,
   },
 ];
+
+const workExperience = [
+  {
+    id: 1,
+    role: "Freelance Development",
+    date: "Jan 2026 - Present",
+    description: `I run a freelance web development business, designing and 
+    building custom sites for local businesses. The work has sharpened my 
+    ability to translate non-technical stakeholder needs into responsive, 
+    well-designed pages and taught me to prioritise client communication.`,
+    skills: ["Custom Development", "UI/UX", "Requirements Gathering"],
+  },
+  {
+    id: 2,
+    role: "English Tutoring",
+    date: "Apr 2025 - Present",
+    description: `I teach English remotely to adult professionals across a 
+    range of skill levels. The role has sharpened a skill that transfers 
+    directly to engineering such as communication. It's also built the 
+    self-management remote engineering teams depend on: owning my schedule 
+    and staying reliable to people I've never met in person.`,
+    skills: ["Communication", "Self-management", "Remote Work"],
+  },
+];
+
 function PageHeader() {
   return (
     <header className="page-header">
@@ -101,7 +126,10 @@ function ProjectSection() {
   return (
     <section className="project-section" id="project-section">
       <div className="project-header">
-        <h2>My Projects</h2>
+        <div>
+          <h2>My Projects</h2>
+          <p>Personal projects I've completed</p>
+        </div>
         <div className="projects-tabs-container">
           {projects.map((project) => {
             return (
@@ -133,68 +161,141 @@ function ProjectSection() {
 }
 
 function AboutSection() {
+  const [selectedRole, setSelectedRole] = useState(workExperience[0]);
+  const changeRole = (e) => {
+    setSelectedRole(workExperience[e.currentTarget.dataset.role]);
+  };
+
   return (
     <section className="about-section" id="about-section">
-      <div className="about-section-header">
-        <h2>About Me</h2>
+      <div className="about-background"></div>
+      <div className="about-content">
+        <h2 className="about-section-header">About Me</h2>
+        <div className="about-section-cards-container">
+          <div className="about-card">
+            <div className="about-card-text">
+              <h3>Education.</h3>
+              <p>
+                Currently a part-time second-year student at{" "}
+                <a
+                  className="about-links"
+                  href="https://en.wikipedia.org/wiki/University_of_South_Africa"
+                  target="_blank"
+                >
+                  the University of South Africa ↗︎
+                </a>
+                , pursuing a bachelor's degree in Computer Science. Studying at
+                a distance-learning institution has cultivated a strong sense of
+                ownership over my own learning - without the traditional
+                classroom accountability, the discipline has had to be
+                self-imposed. The flexibility of my studies has allowed me to
+                pursue several independent projects beyond my syllabus and build
+                real software: <a className="about-links">Basil ↗︎</a>, a
+                multi-cafe ordering platform with a Flask/React/PostgreSQL stack
+                or developing{" "}
+                <a
+                  className="about-links"
+                  href="https://bloomapp2026.netlify.app/"
+                  target="_blank"
+                >
+                  Bloom ↗︎
+                </a>
+                , a wellness application app while learning to manage complex UI
+                state in React. Learning to solve problems that no course
+                outline anticipated has been better preparation for the pace of
+                the AI and software landscape than any single module could be.
+              </p>
+            </div>
+            <div className="about-image">
+              <div className="bar-row row-1"></div>
+              <img src={hyperImage} />
+            </div>
+          </div>
+          <div className="about-card">
+            <div className="about-card-text">
+              <h3>Work Experience.</h3>
+              <div className="projects-tabs-container">
+                {workExperience.map((role) => (
+                  <button
+                    key={role.id}
+                    className={`project-tab work-tab ${selectedRole.id === role.id ? "selected" : ""}`}
+                    data-role={role.id - 1}
+                    onClick={changeRole}
+                  >
+                    <span className="arrow">↪</span> {role.role}
+                  </button>
+                ))}
+              </div>
+              <div className="about-tab-content" key={selectedRole.id}>
+                <p className="role-date">{selectedRole.date}</p>
+                <p>{selectedRole.description}</p>
+                <div className="skills">
+                  {selectedRole.skills.map((skill) => (
+                    <div key={skill}>{skill}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="about-image">
+              <div className="bar-row row-1"></div>
+              <img src={hyperImage} />
+            </div>
+          </div>
+          <div className="about-card">
+            <div className="about-card-text">
+              <h3>Interests.</h3>
+              <p>
+                I’m currently exploring AI and machine learning from the ground
+                up, building a foundation in theory while applying what I learn
+                practically. I’m particularly interested in AI’s potential to
+                automate time-consuming tasks and expand access to opportunities
+                in education, healthcare, and infrastructure. Outside of
+                engineering, I love reading widely. I enjoy encountering
+                different perspectives, ideas, cultures, and periods of
+                history—curiosity that shapes how I approach both technology and
+                the world around me.
+              </p>
+            </div>
+            <div className="about-image">
+              <div className="bar-row row-1"></div>
+              <img src={hyperImage} />
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="about-section-cards-container">
-        <div className="about-card">
-          <div className="about-card-text">
-            <h3>Education.</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <img src={hyperImage} />
-        </div>
-        <div className="about-card">
-          <div className="about-card-text">
-            <h3>Work Experience.</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <img src={hyperImage} />
-        </div>
-        <div className="about-card">
-          <div className="about-card-text">
-            <h3>Interest.</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <img src={hyperImage} />
-        </div>
-      </div>
-      <div className="about-section-header"></div>
     </section>
   );
 }
 
 function ContactSection() {
   return (
-    <sectio className="contact-section">
-      <div className="contact-header">
-        <h2>Get in Touch</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore.
-        </p>
-      </div>
+    <section className="contact-section">
+      <div className="small-header">Contact Me</div>
+      <h2>Let's Work Together.</h2>
+      <p>Open to collaborate with you on whatever you want I guess.</p>
       <div className="contact-form-container">
-        <form></form>
+        <div className="art-2">
+          <AsciiReveal />
+        </div>
+        <form>
+          <h3>Lets work Together.</h3>
+          <fieldset>
+            <label>
+              Name
+              <input />
+            </label>
+            <label>
+              Email
+              <input />
+            </label>
+          </fieldset>
+          <label>
+            Message
+            <textarea></textarea>
+          </label>
+        </form>
       </div>
-    </sectio>
+    </section>
   );
 }
 function App() {
