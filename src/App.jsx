@@ -7,8 +7,9 @@ import metaMock from "./assets/meta-mock.png";
 import reactFlaskLogo from "./assets/react-flask-logo.png";
 import reactFlaskPostLogo from "./assets/react-flask-post-logo.png";
 import cssLogo from "./assets/css-js-logo.png";
+import kLogo from "./assets/k-logo.png";
 import "./App.css";
-
+import useInViewOnce from "./hooks/useInViewOnce";
 const projects = [
   {
     id: 1,
@@ -79,7 +80,9 @@ const workExperience = [
 function PageHeader() {
   return (
     <header className="page-header">
-      <div className="logo-title">K.</div>
+      <div className="logo-title">
+        <img src={kLogo} />
+      </div>
       <nav>
         <ul>
           <li>
@@ -92,11 +95,13 @@ function PageHeader() {
             <a href="#about-section">About Me</a>
           </li>
           <li>
-            <a>Contact</a>
+            <a href="#contact-section">Contact</a>
           </li>
         </ul>
       </nav>
-      <button className="btn-primary">Get in Touch</button>
+      <a href="#contact-section">
+        <button className="btn-primary">Get in Touch</button>
+      </a>
     </header>
   );
 }
@@ -106,10 +111,12 @@ function HeroSection() {
     <section className="hero-section">
       <div className="hero-text">
         <h1>
-          I’m Keiomarah Chigudu, a Computer Science student, full stack
-          developer and aspiring AI engineer.
+          I’m Keiomarah Chigudu, a Computer Science Student, Full-Stack
+          Developer and Aspiring AI Engineer.
         </h1>
-        <button className="btn-primary">See Projects</button>
+        <a href="#project-section">
+          <button className="btn-primary">See Projects</button>
+        </a>
       </div>
       <div className="ascii-art-container">
         <AsciiReveal />
@@ -128,7 +135,7 @@ function ProjectSection() {
       <div className="project-header">
         <div>
           <h2>My Projects</h2>
-          <p>Personal projects I've completed</p>
+          <p className="subtext">Personal projects I've completed.</p>
         </div>
         <div className="projects-tabs-container">
           {projects.map((project) => {
@@ -162,6 +169,9 @@ function ProjectSection() {
 
 function AboutSection() {
   const [selectedRole, setSelectedRole] = useState(workExperience[0]);
+  const [eduRef, eduInView] = useInViewOnce();
+  const [workRef, workInView] = useInViewOnce();
+  const [interestsRef, interestsInView] = useInViewOnce();
   const changeRole = (e) => {
     setSelectedRole(workExperience[e.currentTarget.dataset.role]);
   };
@@ -206,9 +216,9 @@ function AboutSection() {
                 the AI and software landscape than any single module could be.
               </p>
             </div>
-            <div className="about-image">
-              <div className="bar-row row-1"></div>
-              <img src={hyperImage} />
+            <div className="about-image" ref={eduRef}>
+              <div className={`bar-row row-1 ${eduInView ? "play" : ""}`}></div>
+              <img src={hyperImage} alt="" aria-hidden="true" />
             </div>
           </div>
           <div className="about-card">
@@ -236,29 +246,38 @@ function AboutSection() {
                 </div>
               </div>
             </div>
-            <div className="about-image">
-              <div className="bar-row row-1"></div>
-              <img src={hyperImage} />
+            <div className="about-image" ref={workRef}>
+              <div
+                className={`bar-row row-1 ${workInView ? "play" : ""}`}
+              ></div>
+              <img src={hyperImage} alt="" aria-hidden="true" />
             </div>
           </div>
           <div className="about-card">
             <div className="about-card-text">
               <h3>Interests.</h3>
               <p>
-                I’m currently exploring AI and machine learning from the ground
-                up, building a foundation in theory while applying what I learn
-                practically. I’m particularly interested in AI’s potential to
-                automate time-consuming tasks and expand access to opportunities
-                in education, healthcare, and infrastructure. Outside of
-                engineering, I love reading widely. I enjoy encountering
-                different perspectives, ideas, cultures, and periods of
-                history—curiosity that shapes how I approach both technology and
-                the world around me.
+                I’m currently exploring{" "}
+                <span className="highlight">AI and machine learning</span> from
+                the ground up, building a foundation in theory while applying
+                what I learn practically. I’m particularly interested in AI’s
+                potential to automate time-consuming tasks and expand access to
+                opportunities in{" "}
+                <span className="highlight">
+                  education, healthcare, and infrastructure
+                </span>
+                . Outside of engineering, I love{" "}
+                <span className="highlight">reading</span> widely. I enjoy
+                encountering different perspectives, ideas, cultures, and
+                periods of history—curiosity that shapes how I approach both
+                technology and the world around me.
               </p>
             </div>
-            <div className="about-image">
-              <div className="bar-row row-1"></div>
-              <img src={hyperImage} />
+            <div className="about-image" ref={interestsRef}>
+              <div
+                className={`bar-row row-1 ${interestsInView ? "play" : ""}`}
+              ></div>
+              <img src={hyperImage} alt="" aria-hidden="true" />
             </div>
           </div>
         </div>
@@ -269,35 +288,84 @@ function AboutSection() {
 
 function ContactSection() {
   return (
-    <section className="contact-section">
+    <section className="contact-section" id="contact-section">
       <div className="small-header">Contact Me</div>
       <h2>Let's Work Together.</h2>
       <p>Open to collaborate with you on whatever you want I guess.</p>
-      <div className="contact-form-container">
-        <div className="art-2">
-          <AsciiReveal />
+      <div className="contact-form-glow">
+        <div className="contact-form-container">
+          <div className="art-2">
+            <AsciiReveal />
+          </div>
+          <form>
+            <h3>Let's Build Something Meaningful.</h3>
+            <fieldset>
+              <label>
+                Name
+                <input placeholder="John Appleseed" />
+              </label>
+              <label>
+                Email
+                <input placeholder="johnappleseed@email.com" />
+              </label>
+            </fieldset>
+            <label>Message</label>
+            <textarea rows="9" placeholder="Message..."></textarea>
+            <buton className="btn-primary submit-btn">submit</buton>
+          </form>
         </div>
-        <form>
-          <h3>Lets work Together.</h3>
-          <fieldset>
-            <label>
-              Name
-              <input />
-            </label>
-            <label>
-              Email
-              <input />
-            </label>
-          </fieldset>
-          <label>
-            Message
-            <textarea></textarea>
-          </label>
-        </form>
       </div>
     </section>
   );
 }
+
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-top">
+        <div className="footer-brand">
+          <img src={kLogo} className="footer-logo" />
+          <p>
+            Building things at the intersection of design, code, and wellbeing.
+          </p>
+        </div>
+
+        <div className="footer-links">
+          <div className="footer-col">
+            <h4>Navigate</h4>
+            <a href="#project-section">Projects</a>
+            <a href="#about-section">About Me</a>
+            <a href="#contact-section">Contact</a>
+          </div>
+
+          <div className="footer-col">
+            <h4>Elsewhere</h4>
+            <a href="https://github.com/keiomarah" target="_blank">
+              GitHub ↗︎
+            </a>
+            <a
+              href="https://www.linkedin.com/in/keiomarah-chigudu-48466a16b/"
+              target="_blank"
+            >
+              LinkedIn ↗︎
+            </a>
+            <a href="mailto:keiomarah@hotmail.com">Email ↗︎</a>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>
+          © {new Date().getFullYear()} Keiomarah Chigudu. All rights reserved.
+        </p>
+        <a href="#" className="back-to-top">
+          Back to top ↑
+        </a>
+      </div>
+    </footer>
+  );
+}
+
 function App() {
   return (
     <>
@@ -306,6 +374,7 @@ function App() {
       <ProjectSection />
       <AboutSection />
       <ContactSection />
+      <Footer />
     </>
   );
 }
