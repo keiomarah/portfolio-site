@@ -10,6 +10,8 @@ import cssLogo from "./assets/css-js-logo.png";
 import kLogo from "./assets/k-logo.png";
 import "./App.css";
 import useInViewOnce from "./hooks/useInViewOnce";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 const projects = [
   {
     id: 1,
@@ -78,12 +80,25 @@ const workExperience = [
 ];
 
 function PageHeader() {
+  const [showMenu, setShowMenu] = useState(false);
+  const displayMenu = () => {
+    setShowMenu((prev) => !prev);
+  };
+
   return (
     <header className="page-header">
       <div className="logo-title">
         <img src={kLogo} />
       </div>
-      <nav>
+      <button
+        className="menu-icon"
+        onClick={(e) => {
+          displayMenu(e);
+        }}
+      >
+        <FontAwesomeIcon icon={faBars} />
+      </button>
+      <nav className={`header-nav ${showMenu ? "show" : ""}`}>
         <ul>
           <li>
             <a>Home</a>
@@ -99,7 +114,7 @@ function PageHeader() {
           </li>
         </ul>
       </nav>
-      <a href="#contact-section">
+      <a href="#contact-section" className="header-btn">
         <button className="btn-primary">Get in Touch</button>
       </a>
     </header>
