@@ -19,7 +19,7 @@ body {
   background-color: black;
   color: white;
   font-family: "Inter", apple-system, BlinkMacSystemFont, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /*Page Header*/
@@ -343,6 +343,7 @@ h2 {
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .skills div {
@@ -789,6 +790,18 @@ footer {
   .project-description {
     margin: 1rem;
     width: 100%;
+  }
+
+  .footer-links {
+    gap: 2rem;
+  }
+
+  .footer-top {
+    gap: 2rem;
+  }
+
+  .about-card-text {
+    padding: 0 2rem;
   }
 }
 
