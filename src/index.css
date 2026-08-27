@@ -518,6 +518,8 @@ h2 {
 
 .contact-section p {
   margin-bottom: 2rem;
+  text-align: center;
+  width: 600px;
 }
 
 .contact-form-glow {
@@ -707,6 +709,9 @@ footer {
     display: block;
   }
 
+  .contact-section p {
+    width: 350px;
+  }
   .header-nav,
   .header-btn {
     display: none;
