@@ -15,8 +15,8 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const CONTACT_ENDPOINT = "/.netlify/functions/contact";
 const projects = [
-  {
-    id: 1,
+  /*{
+    id: 3,
     name: "Multi-Cafe Ordering App",
     description: `
     Basil is a multi-café ordering application developed in Flask, 
@@ -29,9 +29,8 @@ const projects = [
     image: cafeMock,
     stack: reactFlaskPostLogo,
     link: "",
-  },
-  {
-    id: 2,
+  }*/ {
+    id: 1,
     name: "Architecture Firm Portfolio Site",
     description: `
     I designed and built a portfolio site for Metamorphosis AIDPM, an architecture 
@@ -44,7 +43,7 @@ const projects = [
     link: "https://metamorphosis.co.zw/",
   },
   {
-    id: 3,
+    id: 2,
     name: "Mood Reflection Journal App",
     description: `
     Bloom is a full-stack mood reflection and journal web application I 

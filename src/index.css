@@ -192,7 +192,7 @@ h2 {
 
 .project-description {
   font-size: 1rem;
-  text-align: justify;
+  text-align: left;
   width: 36%;
 }
 .projects-tabs-container {
@@ -272,7 +272,7 @@ h2 {
 }
 
 .work-tab {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .projects-tabs-container {
@@ -325,7 +325,7 @@ h2 {
   line-height: 1.2;
 
   margin-bottom: 0;
-
+  text-align: left;
   display: flex;
   justify-content: space-between;
   background-color: black;
@@ -388,7 +388,7 @@ h2 {
 }
 
 .about-card-text p {
-  text-align: justify;
+  text-align: left;
 }
 
 .about-image {
