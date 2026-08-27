@@ -3,13 +3,11 @@
   --form-grey: rgb(64, 64, 64);
 }
 
-*,
-*::after,
+* *::after,
 *::before {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  border: 1px solid white;
 }
 
 html {
