@@ -9,6 +9,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  border: 1px solid white;
 }
 
 html {
@@ -103,12 +104,16 @@ a:hover {
   clip-path: inset(-100px 0px 0px 0px);
 }
 
+.hero-btn {
+  color: black;
+}
+
 .hero-text {
   width: clamp(17rem, calc(8.727rem + 36.364vw), 36rem);
   text-align: justify;
   background: radial-gradient(
     ellipse at center,
-    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 0%,
     rgba(0, 0, 0, 0.2) 70%
   );
   z-index: 500;
@@ -729,9 +734,9 @@ footer {
     position: static;
     transform: none;
     flex-direction: column;
+    gap: 0;
     width: 100%;
     background-color: var(--accent-color);
-    padding: 1.5rem;
   }
 
   .header-nav.show ul a {
@@ -801,6 +806,13 @@ footer {
 
   .about-card-text {
     padding: 0 2rem;
+  }
+
+  li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 1.2rem 1.5rem;
   }
 }
 

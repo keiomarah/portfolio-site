@@ -135,7 +135,7 @@ function HeroSection() {
           I’m Keiomarah Chigudu, a Computer Science Student, Full-Stack
           Developer and Aspiring AI Engineer.
         </h1>
-        <a href="#project-section">
+        <a href="#project-section" className="hero-btn">
           <button className="btn-primary">See Projects</button>
         </a>
       </div>
