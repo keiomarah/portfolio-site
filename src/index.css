@@ -22,6 +22,11 @@ body {
 }
 
 /*Page Header*/
+
+.hero-btn {
+  color: black;
+}
+
 .page-header {
   display: flex;
   width: 100%;
@@ -103,10 +108,6 @@ a:hover {
   clip-path: inset(-100px 0px 0px 0px);
 }
 
-.hero-btn {
-  color: black;
-}
-
 .hero-text {
   width: clamp(17rem, calc(8.727rem + 36.364vw), 36rem);
   text-align: justify;
@@ -120,7 +121,7 @@ a:hover {
 
 .ascii-art-container {
   position: absolute;
-  right: 0;
+
   top: -6rem;
   z-index: 1;
 }
@@ -729,6 +730,10 @@ footer {
     width: 100%;
   }
 
+  .ascii-art-container {
+    right: -20px;
+  }
+
   .header-nav.show ul {
     position: static;
     transform: none;
@@ -762,6 +767,7 @@ footer {
   form {
     width: 100%;
     margin: 0;
+    padding: 1rem;
   }
 
   fieldset {
@@ -791,7 +797,7 @@ footer {
   }
 
   .project-description {
-    margin: 1rem;
+    margin: 0.75rem;
     width: 100%;
   }
 
@@ -804,7 +810,7 @@ footer {
   }
 
   .about-card-text {
-    padding: 0 2rem;
+    padding: 0 4rem;
   }
 
   li a {
@@ -812,6 +818,14 @@ footer {
     width: 100%;
     height: 100%;
     padding: 1.2rem 1.5rem;
+  }
+
+  form {
+    padding: 2rem 0.5rem;
+  }
+
+  .project-details-container .project-stack {
+    display: none;
   }
 }
 
