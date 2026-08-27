@@ -121,7 +121,7 @@ a:hover {
 
 .ascii-art-container {
   position: absolute;
-
+  right: 0;
   top: -6rem;
   z-index: 1;
 }
