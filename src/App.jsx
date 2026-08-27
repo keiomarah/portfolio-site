@@ -169,12 +169,7 @@ function ProjectSection() {
                   changeProject(e);
                 }}
               >
-                <span
-                  className={`arrow ${selectedProject.id === project.id ? "unhide" : ""}`}
-                >
-                  ↪
-                </span>{" "}
-                {project.name}
+                <span className="arrow">↪</span> {project.name}
               </button>
             );
           })}

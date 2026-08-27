@@ -243,12 +243,9 @@ h2 {
 }
 
 .arrow {
-  display: none;
+  font-family: sans-serif;
 }
 
-.arrow.unhide {
-  display: inline-block;
-}
 /*About Me Section*/
 
 .about-section-header {
