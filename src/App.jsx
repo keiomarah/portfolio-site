@@ -387,7 +387,11 @@ function ContactSection() {
     <section className="contact-section" id="contact-section">
       <div className="small-header">Contact Me</div>
       <h2>Let's Work Together.</h2>
-      <p>Open to collaborate with you on whatever you want I guess.</p>
+      <p>
+        I’m always open to new opportunities, collaborations, and meaningful
+        projects. If you have an idea or would like to work together, I’d love
+        to hear from you.
+      </p>
       <div className="contact-form-glow">
         <div className="contact-form-container">
           <div className="art-container">
