@@ -1,17 +1,19 @@
 import { useState } from "react";
 import AsciiReveal from "./utils/flower.jsx";
 import hyperImage from "./assets/hyper-image.jpg";
-import bloomMock from "./assets/bloom-mock.png";
-import cafeMock from "./assets/cafe-mock.png";
-import metaMock from "./assets/meta-mock.png";
-import reactFlaskLogo from "./assets/react-flask-logo.png";
-import reactFlaskPostLogo from "./assets/react-flask-post-logo.png";
-import cssLogo from "./assets/css-js-logo.png";
+import bloomMock from "./assets/bloom-mock.webp";
+import cafeMock from "./assets/cafe-mock.webp";
+import metaMock from "./assets/meta-mock.webp";
+import reactFlaskLogo from "./assets/react-flask-logo.webp";
+import reactFlaskPostLogo from "./assets/react-flask-post-logo.webp";
+import cssLogo from "./assets/css-js-logo.webp";
 import kLogo from "./assets/k-logo.png";
 import "./App.css";
 import useInViewOnce from "./hooks/useInViewOnce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+const CONTACT_ENDPOINT = "/.netlify/functions/contact";
 const projects = [
   {
     id: 1,
@@ -26,6 +28,7 @@ const projects = [
     `,
     image: cafeMock,
     stack: reactFlaskPostLogo,
+    link: "",
   },
   {
     id: 2,
@@ -38,6 +41,7 @@ const projects = [
     `,
     image: metaMock,
     stack: cssLogo,
+    link: "https://metamorphosis.co.zw/",
   },
   {
     id: 3,
@@ -52,6 +56,7 @@ const projects = [
     `,
     image: bloomMock,
     stack: reactFlaskLogo,
+    link: "https://bloomapp2026.netlify.app/",
   },
 ];
 
@@ -88,7 +93,7 @@ function PageHeader() {
   return (
     <header className="page-header">
       <div className="logo-title">
-        <img src={kLogo} />
+        <img src={kLogo} alt="yellow k logo" />
       </div>
       <button
         className="menu-icon"
@@ -96,13 +101,14 @@ function PageHeader() {
           displayMenu(e);
         }}
       >
-        <FontAwesomeIcon icon={faBars} />
+        <FontAwesomeIcon
+          icon={faBars}
+          aria-label="menu icon"
+          aria-expanded={showMenu}
+        />
       </button>
       <nav className={`header-nav ${showMenu ? "show" : ""}`}>
         <ul>
-          <li>
-            <a>Home</a>
-          </li>
           <li>
             <a href="#project-section">Projects</a>
           </li>
@@ -123,7 +129,7 @@ function PageHeader() {
 
 function HeroSection() {
   return (
-    <section className="hero-section">
+    <section className="hero-section" id="hero-section">
       <div className="hero-text">
         <h1>
           I’m Keiomarah Chigudu, a Computer Science Student, Full-Stack
@@ -156,13 +162,19 @@ function ProjectSection() {
           {projects.map((project) => {
             return (
               <button
+                key={`button-${project.id}`}
                 className={`project-tab ${selectedProject.id === project.id ? "selected" : ""}`}
                 data-project={project.id - 1}
                 onClick={(e) => {
                   changeProject(e);
                 }}
               >
-                <span className="arrow">↪</span> {project.name}
+                <span
+                  className={`arrow ${selectedProject.id === project.id ? "unhide" : ""}`}
+                >
+                  ↪
+                </span>{" "}
+                {project.name}
               </button>
             );
           })}
@@ -171,10 +183,30 @@ function ProjectSection() {
       <div className="project-panel">
         <div className="project-panel-content" key={selectedProject.id}>
           <p className="project-number">{`0${selectedProject.id}/03`}</p>
-          <img className="project-image" src={selectedProject.image} />
+          <img
+            className="project-image"
+            src={selectedProject.image}
+            alt="desktop computer open on project"
+            loading="lazy"
+          />
           <div className="project-details-container">
-            <img className="project-stack" src={selectedProject.stack} />
-            <p className="project-description">{selectedProject.description}</p>
+            <img
+              className="project-stack"
+              src={selectedProject.stack}
+              alt="programming stack logos"
+              loading="lazy"
+            />
+            <p className="project-description">
+              {selectedProject.description}{" "}
+              <a
+                className="visit-links"
+                href={selectedProject.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit here ↗︎
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -206,6 +238,7 @@ function AboutSection() {
                   className="about-links"
                   href="https://en.wikipedia.org/wiki/University_of_South_Africa"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   the University of South Africa ↗︎
                 </a>
@@ -222,6 +255,7 @@ function AboutSection() {
                   className="about-links"
                   href="https://bloomapp2026.netlify.app/"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Bloom ↗︎
                 </a>
@@ -233,7 +267,7 @@ function AboutSection() {
             </div>
             <div className="about-image" ref={eduRef}>
               <div className={`bar-row row-1 ${eduInView ? "play" : ""}`}></div>
-              <img src={hyperImage} alt="" aria-hidden="true" />
+              <img src={hyperImage} alt="" aria-hidden="true" loading="lazy" />
             </div>
           </div>
           <div className="about-card">
@@ -247,7 +281,12 @@ function AboutSection() {
                     data-role={role.id - 1}
                     onClick={changeRole}
                   >
-                    <span className="arrow">↪</span> {role.role}
+                    <span
+                      className={`arrow ${selectedRole.id === role.id ? "unhide" : ""}`}
+                    >
+                      ↪
+                    </span>{" "}
+                    {role.role}
                   </button>
                 ))}
               </div>
@@ -265,7 +304,7 @@ function AboutSection() {
               <div
                 className={`bar-row row-1 ${workInView ? "play" : ""}`}
               ></div>
-              <img src={hyperImage} alt="" aria-hidden="true" />
+              <img src={hyperImage} alt="" aria-hidden="true" loading="lazy" />
             </div>
           </div>
           <div className="about-card">
@@ -292,7 +331,7 @@ function AboutSection() {
               <div
                 className={`bar-row row-1 ${interestsInView ? "play" : ""}`}
               ></div>
-              <img src={hyperImage} alt="" aria-hidden="true" />
+              <img src={hyperImage} alt="" aria-hidden="true" loading="lazy" />
             </div>
           </div>
         </div>
@@ -302,6 +341,48 @@ function AboutSection() {
 }
 
 function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    website: "", // honeypot — stays empty for real users
+  });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "", website: "" });
+      } else {
+        setStatus("error");
+        setErrorMessage(
+          result.error || "Something went wrong. Please try again.",
+        );
+      }
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage("Could not reach the server. Please try again later.");
+    }
+  };
+
   return (
     <section className="contact-section" id="contact-section">
       <div className="small-header">Contact Me</div>
@@ -309,24 +390,75 @@ function ContactSection() {
       <p>Open to collaborate with you on whatever you want I guess.</p>
       <div className="contact-form-glow">
         <div className="contact-form-container">
-          <div className="art-2">
-            <AsciiReveal />
+          <div className="art-container">
+            <div className="art-2">
+              <AsciiReveal />
+            </div>
           </div>
-          <form>
+
+          <form onSubmit={handleSubmit}>
             <h3>Let's Build Something Meaningful.</h3>
             <fieldset>
               <label>
                 Name
-                <input placeholder="John Appleseed" />
+                <input
+                  name="name"
+                  placeholder="John Appleseed"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
               </label>
               <label>
                 Email
-                <input placeholder="johnappleseed@email.com" />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="johnappleseed@email.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
               </label>
             </fieldset>
             <label>Message</label>
-            <textarea rows="9" placeholder="Message..."></textarea>
-            <buton className="btn-primary submit-btn">submit</buton>
+            <textarea
+              name="message"
+              rows="9"
+              placeholder="Message..."
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+
+            {/* Honeypot field — hidden from real users via CSS, bots fill it in */}
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              tabIndex="-1"
+              autoComplete="off"
+              style={{ position: "absolute", left: "-9999px" }}
+              aria-hidden="true"
+            />
+
+            <button
+              type="submit"
+              className="btn-primary submit-btn"
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? "Sending..." : "Submit"}
+            </button>
+
+            {status === "success" && (
+              <p className="form-status success">
+                Thanks — your message has been sent. I'll get back to you soon.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="form-status error">{errorMessage}</p>
+            )}
           </form>
         </div>
       </div>
@@ -339,7 +471,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-top">
         <div className="footer-brand">
-          <img src={kLogo} className="footer-logo" />
+          <img src={kLogo} className="footer-logo" alt="yellow k logo" />
           <p>
             Building things at the intersection of design, code, and wellbeing.
           </p>
@@ -355,12 +487,17 @@ function Footer() {
 
           <div className="footer-col">
             <h4>Elsewhere</h4>
-            <a href="https://github.com/keiomarah" target="_blank">
+            <a
+              href="https://github.com/keiomarah"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub ↗︎
             </a>
             <a
               href="https://www.linkedin.com/in/keiomarah-chigudu-48466a16b/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               LinkedIn ↗︎
             </a>

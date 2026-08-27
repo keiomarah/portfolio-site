@@ -18,7 +18,7 @@ html {
 body {
   background-color: black;
   color: white;
-  font-family: "Inter";
+  font-family: "Inter", apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
 }
 
@@ -96,16 +96,23 @@ a:hover {
 /*Hero section*/
 .hero-section {
   position: relative;
-  padding: 0 4rem;
+  padding: 0 5rem;
   display: flex;
   align-items: center;
   height: 80vh;
   background-color: black;
+  clip-path: inset(-100px 0px 0px 0px);
 }
 
 .hero-text {
-  width: 40%;
+  width: clamp(17rem, calc(8.727rem + 36.364vw), 36rem);
   text-align: justify;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.2) 70%
+  );
+  z-index: 500;
 }
 
 .ascii-art-container {
@@ -164,7 +171,7 @@ h2 {
 
 .project-image {
   display: block;
-  width: 38%;
+  width: 36%;
   margin: 0 auto;
   padding-bottom: 3rem;
 }
@@ -178,15 +185,15 @@ h2 {
 }
 
 .project-stack {
-  width: 11rem;
-  height: auto;
+  width: clamp(8rem, calc(2.818rem + 10.909vw), 11rem);
+  height: clamp(8rem, calc(2.818rem + 10.909vw), 11rem);
   opacity: 0.9;
 }
 
 .project-description {
   font-size: 1rem;
   text-align: justify;
-  width: 30vw;
+  width: 36%;
 }
 .projects-tabs-container {
   display: flex;
@@ -231,6 +238,13 @@ h2 {
   }
 }
 
+.arrow {
+  display: none;
+}
+
+.arrow.unhide {
+  display: inline-block;
+}
 /*About Me Section*/
 
 .about-section-header {
@@ -280,6 +294,17 @@ h2 {
   text-underline-offset: 4px;
 }
 
+.visit-links {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: black;
+}
+
+.visit-links:hover {
+  color: black;
+}
+
 .about-background::after {
   content: "";
   position: absolute;
@@ -307,7 +332,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   background-color: black;
-  height: 45vh;
+  height: 50vh;
 }
 
 .about-card-text h4 {
@@ -517,9 +542,12 @@ h2 {
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  overflow: hidden;
 }
 
+.art-container {
+  overflow: hidden;
+  height: 100%;
+}
 @keyframes pulse {
   0%,
   100% {
@@ -547,6 +575,13 @@ fieldset {
   display: flex;
   gap: 1rem;
   border: none;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+fieldset label {
+  flex: 1;
+  min-width: 0;
 }
 
 input,
@@ -556,8 +591,10 @@ textarea {
   border: 1px solid var(--form-grey);
   border-radius: 10px;
   padding: 9px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 4px;
 }
-
 textarea {
   white-space: pre-wrap;
   overflow-wrap: break-word;
@@ -694,5 +731,102 @@ footer {
 
   .header-nav.show ul a {
     color: black;
+  }
+
+  .about-image {
+    display: none;
+  }
+
+  .about-card {
+    height: 75vh !important;
+  }
+
+  .contact-section {
+    height: fit-content;
+    padding: 4rem 0;
+  }
+
+  .art-2 {
+    display: none;
+  }
+
+  form {
+    width: 100%;
+    margin: 0;
+  }
+
+  fieldset {
+    flex-direction: column;
+  }
+
+  .contact-form-glow {
+    width: fit-content;
+    height: fit-content;
+  }
+  .contact-form-container {
+    height: fit-content;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .project-section {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .project-image {
+    width: 75%;
+  }
+
+  .project-description {
+    margin: 1rem;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 728px) and (max-width: 1200px) {
+  .project-section {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .project-image {
+    width: 50%;
+  }
+
+  .project-details-container {
+    align-items: flex-start;
+  }
+  .project-description {
+    margin: 1rem;
+    width: 50%;
+  }
+
+  .project-stack {
+    margin-top: 1rem;
+  }
+
+  .about-image {
+    display: none;
+  }
+
+  .about-card {
+    height: 50vh;
+  }
+
+  .art-container {
+    display: none;
+  }
+
+  .contact-form-container {
+    height: fit-content;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
   }
 }

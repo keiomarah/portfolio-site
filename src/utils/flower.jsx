@@ -150,7 +150,7 @@ export default function AsciiReveal() {
     if (!canvasRef.current) return;
 
     const animation = new AsciiRevealCanvas(canvasRef.current, asciiArt, {
-      fontSize: 20,
+      fontSize: 16,
       color: "#fff70c",
       revealDuration: 1500,
       idleFlickerCount: 12,
