@@ -110,13 +110,9 @@ a:hover {
 
 .hero-text {
   width: clamp(17rem, calc(8.727rem + 36.364vw), 36rem);
-  text-align: justify;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.2) 70%
-  );
+  text-align: left;
   z-index: 500;
+  word-spacing: 2px;
 }
 
 .ascii-art-container {
@@ -824,6 +820,15 @@ footer {
   .project-details-container .project-stack {
     display: none;
   }
+
+  .ascii-art-container::after {
+    content: " ";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
 
 @media screen and (min-width: 728px) and (max-width: 1200px) {
@@ -867,5 +872,14 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+  }
+
+  .ascii-art-container::after {
+    content: " ";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
   }
 }

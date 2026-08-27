@@ -132,7 +132,7 @@ function HeroSection() {
     <section className="hero-section" id="hero-section">
       <div className="hero-text">
         <h1>
-          I’m Keiomarah Chigudu, a Computer Science Student, Full-Stack
+          I am Keiomarah Chigudu, a Computer Science Student, Full-Stack
           Developer and Aspiring AI Engineer.
         </h1>
         <a href="#project-section" className="hero-btn">
