@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+
+# If you already have a [build] section in your existing netlify.toml
+# (e.g. for the "command" and "publish" settings your build uses),
+# just add the "functions" line into that same section instead of
+# creating a second one — Netlify only reads the first [build] block.
