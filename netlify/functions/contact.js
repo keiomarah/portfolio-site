@@ -15,9 +15,9 @@
 //   CONTACT_RECIPIENT    - the inbox submissions should land in (can be the
 //                           same as GMAIL_USER, or different)
 
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   const headers = {
     "Content-Type": "application/json",
   };
