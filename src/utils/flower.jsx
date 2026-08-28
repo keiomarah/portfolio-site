@@ -11,7 +11,7 @@ class AsciiRevealCanvas {
     this.fontSize = options.fontSize || 12;
     this.lineHeight = options.lineHeight || this.fontSize * 1.15;
     this.charWidth = options.charWidth || this.fontSize * 0.6;
-    this.color = options.color || "#fff831";
+    this.color = options.color || "#ffeb36";
     this.font = options.font || `${this.fontSize}px monospace`;
 
     this.revealDuration = options.revealDuration || 1500;
